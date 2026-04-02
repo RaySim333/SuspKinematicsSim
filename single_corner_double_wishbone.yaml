@@ -1,0 +1,66 @@
+type: double_wishbone_single_corner
+units: mm
+
+hardpoints:
+  chassis_lower_front: [150.0, 600.0, 220.0]
+  chassis_lower_rear: [320.0, 600.0, 220.0]
+  chassis_upper_front: [170.0, 640.0, 470.0]
+  chassis_upper_rear: [330.0, 640.0, 470.0]
+  chassis_tie_rod: [420.0, 600.0, 330.0]
+
+  lower_ball_joint: [255.0, 760.0, 250.0]
+  upper_ball_joint: [265.0, 785.0, 430.0]
+  tie_rod_outer: [390.0, 770.0, 325.0]
+
+  wheel_center: [285.0, 835.0, 330.0]
+  wheel_rim_top: [285.0, 835.0, 660.0]
+  wheel_rim_front: [535.0, 835.0, 330.0]
+
+  damper_chassis_mount: [160.0, 530.0, 520.0]
+  damper_upright_mount: [245.0, 735.0, 315.0]
+
+fixed_points:
+  - chassis_lower_front
+  - chassis_lower_rear
+  - chassis_upper_front
+  - chassis_upper_rear
+  - chassis_tie_rod
+  - damper_chassis_mount
+
+rigid_links:
+  - [chassis_lower_front, lower_ball_joint]
+  - [chassis_lower_rear, lower_ball_joint]
+  - [chassis_upper_front, upper_ball_joint]
+  - [chassis_upper_rear, upper_ball_joint]
+  - [chassis_tie_rod, tie_rod_outer]
+  - [lower_ball_joint, upper_ball_joint]
+  - [lower_ball_joint, tie_rod_outer]
+  - [upper_ball_joint, tie_rod_outer]
+  - [lower_ball_joint, wheel_center]
+  - [upper_ball_joint, wheel_center]
+  - [tie_rod_outer, wheel_center]
+  - [wheel_center, wheel_rim_top]
+  - [wheel_center, wheel_rim_front]
+  - [wheel_rim_top, wheel_rim_front]
+  - [lower_ball_joint, damper_upright_mount]
+  - [upper_ball_joint, damper_upright_mount]
+  - [tie_rod_outer, damper_upright_mount]
+
+upright_points:
+  - lower_ball_joint
+  - upper_ball_joint
+  - tie_rod_outer
+
+wheel_plane_points:
+  - wheel_center
+  - wheel_rim_top
+  - wheel_rim_front
+
+input_dof: wheel_center_z
+wheel_center_name: wheel_center
+ground_z: 0.0
+
+optional_channels:
+  damper_points:
+    - damper_upright_mount
+    - damper_chassis_mount
