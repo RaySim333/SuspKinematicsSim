@@ -252,25 +252,17 @@ def main() -> None:
         model_source = st.radio("Model source", ["Default model", "Custom file upload"], index=0)
         uploaded_file = st.file_uploader("Upload YAML", type=["yaml", "yml"])
 
-        travel_min = st.number_input("Travel min [mm]", value=-100.0, step=1.0)
-        travel_max = st.number_input("Travel max [mm]", value=100.0, step=1.0)
+        travel_min = st.number_input("Travel min [mm]", value=-50.0, step=1.0)
+        travel_max = st.number_input("Travel max [mm]", value=50.0, step=1.0)
         step = st.number_input("Step [mm]", value=5.0, min_value=0.1, step=0.5)
         ride_height = st.number_input("Ride height reference [mm]", value=0.0, step=1.0)
         right_side = st.checkbox("Mirror to right side", value=False)
-
-        selected_travel_text = st.text_input("Selected travel points [mm]", value="-50,0,50")
 
     if travel_max <= travel_min:
         st.error("Travel max must be greater than travel min.")
         st.stop()
 
-    try:
-        selected_travel = [float(token.strip()) for token in selected_travel_text.split(",") if token.strip()]
-        if not selected_travel:
-            selected_travel = [-50.0, 0.0, 50.0]
-    except ValueError:
-        st.error("Selected travel points must be comma-separated numbers.")
-        st.stop()
+    selected_travel = [-50.0, 0.0, 50.0]
 
     try:
         if model_source == "Custom file upload" and uploaded_file is not None:
@@ -327,7 +319,7 @@ def main() -> None:
 
     with tabs[3]:
         travel_array = df["travel_mm"].to_numpy(dtype=float)
-        default_target = float(selected_travel[1]) if len(selected_travel) >= 2 else 0.0
+        default_target = 0.0
         geometry_travel = st.slider(
             "Geometry snapshot [mm]",
             min_value=float(travel_array.min()),
