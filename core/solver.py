@@ -5,9 +5,14 @@ from dataclasses import dataclass
 import numpy as np
 from scipy.optimize import least_squares
 
-from corner.core.constraints import ConstraintSystem
-from corner.core.hardpoints import SuspensionModel, SweepResult
-from corner.core.kinematics_calcs import compute_kinematic_channels
+try:
+    from corner.core.constraints import ConstraintSystem
+    from corner.core.hardpoints import SuspensionModel, SweepResult
+    from corner.core.kinematics_calcs import compute_kinematic_channels
+except ModuleNotFoundError:
+    from core.constraints import ConstraintSystem
+    from core.hardpoints import SuspensionModel, SweepResult
+    from core.kinematics_calcs import compute_kinematic_channels
 
 
 @dataclass

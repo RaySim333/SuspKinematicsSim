@@ -6,7 +6,10 @@ from typing import Any
 
 import numpy as np
 
-from corner.utils.yaml_loader import load_yaml, to_point_dict
+try:
+    from corner.utils.yaml_loader import load_yaml, to_point_dict
+except ModuleNotFoundError:
+    from utils.yaml_loader import load_yaml, to_point_dict
 
 
 @dataclass

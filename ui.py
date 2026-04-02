@@ -9,8 +9,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from corner.simulator import load_model_and_options, resolve_damper_points, run_single_corner_sweep
-from corner.core.hardpoints import SuspensionModel
+try:
+    from corner.simulator import load_model_and_options, resolve_damper_points, run_single_corner_sweep
+    from corner.core.hardpoints import SuspensionModel
+except ModuleNotFoundError:
+    from simulator import load_model_and_options, resolve_damper_points, run_single_corner_sweep
+    from core.hardpoints import SuspensionModel
 
 
 def _build_angles_figure(df: pd.DataFrame) -> plt.Figure:

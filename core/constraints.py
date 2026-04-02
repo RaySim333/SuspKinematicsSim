@@ -5,7 +5,10 @@ from typing import Callable
 
 import numpy as np
 
-from corner.core.hardpoints import SuspensionModel
+try:
+    from corner.core.hardpoints import SuspensionModel
+except ModuleNotFoundError:
+    from core.hardpoints import SuspensionModel
 
 
 @dataclass

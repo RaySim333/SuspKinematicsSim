@@ -7,10 +7,16 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from corner.core.hardpoints import SuspensionModel
-from corner.core.kinematics_calcs import compute_kinematic_channels
-from corner.core.solver import KinematicSolver
-from corner.utils.yaml_loader import load_yaml
+try:
+    from corner.core.hardpoints import SuspensionModel
+    from corner.core.kinematics_calcs import compute_kinematic_channels
+    from corner.core.solver import KinematicSolver
+    from corner.utils.yaml_loader import load_yaml
+except ModuleNotFoundError:
+    from core.hardpoints import SuspensionModel
+    from core.kinematics_calcs import compute_kinematic_channels
+    from core.solver import KinematicSolver
+    from utils.yaml_loader import load_yaml
 
 
 @dataclass

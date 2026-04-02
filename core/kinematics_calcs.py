@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import numpy as np
 
-from corner.core.hardpoints import SuspensionModel
+try:
+    from corner.core.hardpoints import SuspensionModel
+except ModuleNotFoundError:
+    from core.hardpoints import SuspensionModel
 
 
 def _normalize(vector: np.ndarray) -> np.ndarray:
