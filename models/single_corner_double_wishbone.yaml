@@ -14,7 +14,7 @@ hardpoints:
 
   wheel_center: [285.0, 835.0, 330.0]
   wheel_rim_top: [285.0, 835.0, 660.0]
-  wheel_rim_front: [535.0, 835.0, 330.0]
+  wheel_rim_rear: [535.0, 835.0, 330.0]
 
   damper_chassis_mount: [160.0, 530.0, 520.0]
   damper_upright_mount: [245.0, 735.0, 315.0]
@@ -40,11 +40,15 @@ rigid_links:
   - [upper_ball_joint, wheel_center]
   - [tie_rod_outer, wheel_center]
   - [wheel_center, wheel_rim_top]
-  - [wheel_center, wheel_rim_front]
-  - [wheel_rim_top, wheel_rim_front]
+  - [wheel_center, wheel_rim_rear]
+  - [wheel_rim_top, wheel_rim_rear]
   - [lower_ball_joint, damper_upright_mount]
   - [upper_ball_joint, damper_upright_mount]
   - [tie_rod_outer, damper_upright_mount]
+  - [tie_rod_outer, wheel_rim_rear]
+  - [tie_rod_outer, wheel_rim_top]
+  - [upper_ball_joint, wheel_rim_rear]
+  - [upper_ball_joint, wheel_rim_top]
 
 upright_points:
   - lower_ball_joint
@@ -54,7 +58,7 @@ upright_points:
 wheel_plane_points:
   - wheel_center
   - wheel_rim_top
-  - wheel_rim_front
+  - wheel_rim_rear
 
 input_dof: wheel_center_z
 wheel_center_name: wheel_center
